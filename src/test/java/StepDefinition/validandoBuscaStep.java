@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import Page.HomePage;
 import Page.ResultadoPage;
+import Setup.Hook;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -12,13 +13,9 @@ public class validandoBuscaStep {
 
 	protected static WebDriver driver;
 
-	@Given("^que esteja na home do site$")
-	public void que_esteja_na_home_do_site() throws Throwable{
-		driver = new Setup.Configuracao().abrirNavegador("chrome", "www.webmotors.com.br");
-	}
-
 	@When("^seleciono a marca o modelo e a versao$")
-	public void selecione_a_marca_o_modelo_e_a_versao() throws Exception {
+	public void selecione_a_marca_o_modelo_e_a_versao() throws Throwable {
+		new Setup.Hook().que_esteja_na_home_do_site();
 		new HomePage(driver).limpaCidadeEstado();
 		new HomePage(driver).selecionaMarca();
 		new HomePage(driver).selecionaModelo();
